@@ -1,5 +1,5 @@
 //
-//  ValueLinesView.swift
+//  LinesView.swift
 //  Trails
 //
 //  Created by Hexagons on 2020-06-12.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ValueLinesView: View {
+struct LinesView: View {
     @ObservedObject var trailer: Trailer
     let size: CGSize
     var body: some View {
@@ -18,26 +18,27 @@ struct ValueLinesView: View {
                                valueLines: self.trailer.bigValueLines,
                                valueRange: self.trailer.valueRangeWithPadding)
             }
-            .stroke(lineWidth: 1.5)
-                .opacity(0.5)
+            .stroke(lineWidth: trailer.lineWidth * 1.5)
+                .opacity(0.25)
             Path { path in
                 PathLines.draw(on: &path,
                                in: size,
                                valueLines: self.trailer.smallValueLines,
                                valueRange: self.trailer.valueRangeWithPadding)
             }
-                .stroke()
-                .opacity(0.25)
+                .stroke(lineWidth: trailer.lineWidth)
+                .opacity(0.125)
         }
+            .clipped()
     }
 }
 
-struct ValueLinesView_Previews: PreviewProvider {
+struct LinesView_Previews: PreviewProvider {
     static var previews: some View {
-        ValueLinesView(trailer: TrailerMoc.make(), size: CGSize(width: 300, height: 300))
-            .colorScheme(.dark)
+        LinesView(trailer: TrailerMoc.make(), size: CGSize(width: 300, height: 300))
+//            .colorScheme(.dark)
+//            .background(Color.black)
             .frame(width: 300, height: 300)
-            .background(Color.black)
             .border(Color.primary)
     }
 }

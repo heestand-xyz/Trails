@@ -56,6 +56,7 @@ struct TrailView: View {
             }
         })
             .blendMode(trailer.colorsActive && trailer.colorBlend ? (colorScheme == .dark ? .lighten : .multiply) : .normal)
+            .clipped()
     }
 }
 
@@ -63,9 +64,9 @@ struct TrailView_Previews: PreviewProvider {
     static var previews: some View {
         let trailer: Trailer = TrailerMoc.make()
         return TrailView(trailer: trailer, index: 0, size: CGSize(width: 300, height: 300))
-            .colorScheme(.dark)
+//            .colorScheme(.dark)
+//            .background(Color.black)
             .frame(width: 300, height: 300)
-            .background(Color.black)
             .border(Color.primary)
     }
 }

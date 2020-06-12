@@ -32,11 +32,11 @@ struct PathTrail {
                     path.addLine(to: CGPoint(x: w, y: y))
                 }
             } else {
-                if i == 0 {
-                    path.move(to: CGPoint(x: x, y: y))
-                } else {
-                    path.addLine(to: CGPoint(x: x, y: y))
-                }
+//                if i == 0 {
+//                    path.move(to: CGPoint(x: x, y: y))
+//                } else {
+//                    path.addLine(to: CGPoint(x: x, y: y))
+//                }
             }
         }
     }

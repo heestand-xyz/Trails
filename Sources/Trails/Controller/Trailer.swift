@@ -37,11 +37,16 @@ public class Trailer: ObservableObject {
     }
     @Published public var paddingFraction: Double = 0.1
     
+    var smallNonBigValueLines: [Double] {
+        smallValueLines.filter { value -> Bool in
+            !bigValueLines.contains(value)
+        }
+    }
     var smallValueLines: [Double] {
-        [0.5, 1.5]
+        Trailer.getMagnitudes(in: valueRange, detail: 0.25, padding: 2)
     }
     var bigValueLines: [Double] {
-        [0.0, 1.0, 2.0, 4.0, 16.0]
+        Trailer.getMagnitudes(in: valueRange)
     }
     
     @Published public var colorsActive: Bool
@@ -54,7 +59,7 @@ public class Trailer: ObservableObject {
     @Published public var circleBorder: Bool = true
     @Published public var circleRadius: CGFloat = 4
     
-    @Published var drawEnds: Bool = false
+    @Published var drawEnds: Bool = true
     
     var displayLink: CADisplayLink!
     
@@ -121,89 +126,56 @@ public class Trailer: ObservableObject {
             }
         }
     }
-    
-//    func magnutudeValues(in range: ClosedRange<Double>, detail: Bool = false) -> [Double] {
-//
-//        let span: Double = range.upperBound - range.lowerBound
-//
-//        var magnitude: Double!
-//        if span <= 5.0 {
-//            magnitude = 1.0
-//        }
-//        if magnitude == nil {
-//            for i in 0..<9 {
-//                let inMag: Double = pow(10.0, Double(i))
-//                let outMag: Double = pow(10.0, Double(i + 1))
-//                if span > inMag * 5.0 && span <= outMag * 5.0 {
-//                    magnitude = outMag
-//                    break
-//                }
-//            }
-//        }
-//        if magnitude == nil {
-//            for i in 0..<9 {
-//                let inMag: Double = 1.0 / pow(10.0, Double(i))
-//                let outMag: Double = 1.0 / pow(10.0, Double(i + 1))
-//                if span > inMag / 5.0 && span <= outMag / 5.0 {
-//                    magnitude = ...inMag
-//                    break
-//                }
-//            }
-//        }
-//        switch range {
-//        case 0.000_000_1...0.000_001:
-//            magnitude = 0.000_000_1
-//        default:
-//            <#code#>
-//        }
-//
-//            = span < 0.001 ? nil : span < 0.01 ? 0.001 : span < 0.1 ? 0.01 : span < 1 ? 0.1 : span < 10 ? 1 : span < 100 ? 10 : span < 1000 ? 100 : span < 10000 ? 1000 : nil
-//        if detail {
-//            magnitude? /= 10 // Detail
-//        }
-//
-//        if magnitude != nil {
-//
-//            var current_magnitude = ceil(low! / magnitude!) * magnitude!
-//            while current_magnitude <= high! {
-//
-//                let mag_path = CGMutablePath()
-//                let y = CGFloat((current_magnitude - low!) / span) * self.size.height
-//                mag_path.move(to: CGPoint(x: self.size.width * (1.0 - layoutFraction), y: y))
-//                mag_path.addLine(to: CGPoint(x: self.size.width, y: y))
-//                let mag_line = SKShapeNode(path: mag_path)
-//                mag_line.strokeColor = NSColor(white: 1.0, alpha: 0.5)
-//                self.addChild(mag_line)
-//
-//                let mag_label = SKLabelNode(text: current_magnitude != 0 ? "\(current_magnitude)" : "0")
-//                mag_label.fontName = "Helvetica-Bold"
-//                mag_label.fontSize = 10 //self.size.width / 10 < 20 ? self.size.width / 10 : 20
-//                mag_label.fontColor = NSColor(white: 1.0, alpha: 0.5)
-//                mag_label.position = CGPoint(x: self.size.width / 20 < 10 ? self.size.width / 20 : 10, y: y)
-//                mag_label.verticalAlignmentMode = .center
-//                mag_label.horizontalAlignmentMode = .left
-//                self.addChild(mag_label)
-//
-//                current_magnitude += magnitude!
-//            }
-//
-//            magnitude! /= 10
-//            current_magnitude = ceil(low! / magnitude!) * magnitude!
-//            while current_magnitude <= high! {
-//
-//                let mag_path = CGMutablePath()
-//                let y = CGFloat((current_magnitude - low!) / span) * self.size.height
-//                mag_path.move(to: CGPoint(x: 0, y: y))
-//                mag_path.addLine(to: CGPoint(x: self.size.width, y: y))
-//                let mag_line = SKShapeNode(path: mag_path)
-//                mag_line.strokeColor = NSColor(white: 1.0, alpha: 0.1)
-//                self.addChild(mag_line)
-//
-//                current_magnitude += magnitude!
-//            }
-//
-//        }
-//
-//    }
+
+    static func getMagnitudes(in range: ClosedRange<Double>,
+                       detail: Double = 1.0,
+                       padding: Int = 0) -> [Double] {
+        precondition(detail != 0.0)
+        precondition(padding >= 0)
+
+        let low: Double = range.lowerBound
+        let high: Double = range.upperBound
+        let span: Double = high - low
+
+        var magnitude: Double!
+        if span >= 0.5 && span <= 5.0 {
+            magnitude = 1.0
+        }
+        if magnitude == nil {
+            for i in 0..<9 {
+                let inMag: Double = pow(10.0, Double(i))
+                let outMag: Double = pow(10.0, Double(i + 1))
+                if span > inMag * 5.0 && span <= outMag * 5.0 {
+                    magnitude = outMag
+                    break
+                }
+            }
+        }
+        if magnitude == nil {
+            for i in 0..<9 {
+                let inMag: Double = 1.0 / pow(10.0, Double(i))
+                let outMag: Double = 1.0 / pow(10.0, Double(i + 1))
+                if span < inMag / 2.0 && span >= outMag / 2.0 {
+                    magnitude = outMag
+                    break
+                }
+            }
+        }
+        guard magnitude != nil else { return [] }
+        
+        magnitude *= detail
+            
+        var magnitudes: [Double] = []
+        let lowMagnitude: Double = (round(low / magnitude) * magnitude) - (Double(padding) * magnitude)
+        let highMagnitude: Double = (round(high / magnitude) * magnitude) + (Double(padding) * magnitude)
+        var currentMagnitude: Double = lowMagnitude
+        while currentMagnitude <= highMagnitude {
+            magnitudes.append(currentMagnitude)
+            currentMagnitude += magnitude
+        }
+        
+        return magnitudes
+
+    }
     
 }
