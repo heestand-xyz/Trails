@@ -1,3 +1,3 @@
 # Trails
 
-A description of this package.
+SwiftUI View for Trails of Values over Time

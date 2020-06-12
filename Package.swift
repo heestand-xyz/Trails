@@ -4,13 +4,12 @@ import PackageDescription
 let package = Package(
     name: "Trails",
     platforms: [
-        .iOS(.v13)
+        .iOS(.v13),
     ],
     products: [
         .library(name: "Trails", targets: ["Trails"]),
     ],
     targets: [
         .target(name: "Trails"),
-        .testTarget(name: "TrailsTests", dependencies: ["Trails"]),
     ]
 )
