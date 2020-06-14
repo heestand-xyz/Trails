@@ -71,14 +71,6 @@ public class Trailer: ObservableObject {
     
     @Published public var colorsActive: Bool
     @Published public var hues: [Double]
-    public var colors: [Color] {
-        hues.map({ hue in
-            Color(hue: hue,
-                  saturation: 2 / 3,
-                  brightness: 1.0,
-                  opacity: 1.0)
-        })
-    }
     @Published public var colorBlend: Bool = true
 
     @Published public var lineWidth: CGFloat = 1

@@ -34,7 +34,7 @@ struct TrailView: View {
                 }
             }
         }
-            .foregroundColor(trailer.colorsActive ? trailer.colors[index] : .primary)
+            .foregroundColor(getColor(at: index))
         .mask(Group {
             if trailer.circlesActive && trailer.circleBorder {
                 ZStack {
@@ -57,6 +57,17 @@ struct TrailView: View {
         })
             .blendMode(trailer.colorsActive && trailer.colorBlend ? (colorScheme == .dark ? .lighten : .multiply) : .normal)
             .clipped()
+    }
+    func getColor(at index: Int) -> Color {
+        guard trailer.colorsActive else { return .primary }
+        let hue: Double = trailer.hues[index]
+        return getColor(hue: hue)
+    }
+    func getColor(hue: Double) -> Color {
+        Color(hue: hue,
+              saturation: 2 / 3,
+              brightness: self.colorScheme == .light ? 0.75 : 1.0,
+              opacity: 1.0)
     }
 }
 

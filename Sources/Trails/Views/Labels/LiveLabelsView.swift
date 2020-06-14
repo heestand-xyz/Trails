@@ -20,12 +20,7 @@ struct LiveLabelsView: View {
                         .colorInvert()
                         .opacity(0.75)
                     Text(self.getText(value: valueAndHue.value))
-                        .foregroundColor(self.trailer.colorsActive ? { () -> Color in
-                            Color(hue: valueAndHue.hue,
-                                saturation: 2 / 3,
-                                brightness: self.colorScheme == .light ? 0.75 : 1.0,
-                                opacity: 1.0)
-                        }() : .primary)
+                        .foregroundColor(self.getColor(hue: valueAndHue.hue))
                         .layoutPriority(1)
                 }
                     .offset(y: self.getOffset(value: valueAndHue.value) - 5)
@@ -54,6 +49,13 @@ struct LiveLabelsView: View {
         guard span > 0.0 else { return 0.0 }
         let fraction: Double = (value - lower) / span
         return CGFloat(1.0 - fraction) * height
+    }
+    func getColor(hue: Double) -> Color {
+        guard trailer.colorsActive else { return .primary }
+        return Color(hue: hue,
+                     saturation: 2 / 3,
+                     brightness: self.colorScheme == .light ? 0.75 : 1.0,
+                     opacity: 1.0)
     }
 }
 

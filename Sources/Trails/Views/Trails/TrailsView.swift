@@ -71,8 +71,8 @@ struct TrailsView_Previews: PreviewProvider {
             ZStack {
                 Color.primary.colorInvert()
                 TrailsView(trailer: TrailerMoc.make())
-                    .colorScheme(.dark)
-                    .background(Color.black)
+//                    .colorScheme(.dark)
+//                    .background(Color.black)
             }
                 .frame(height: 200)
         }
