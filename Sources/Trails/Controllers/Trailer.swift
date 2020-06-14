@@ -81,7 +81,11 @@ public class Trailer: ObservableObject {
     
     @Published var drawEnds: Bool = true
     
+    #if os(macOS)
+    var timerLink: Timer!
+    #else
     var displayLink: CADisplayLink!
+    #endif
     
     public init(count: Int = 1, duration: Double) {
         precondition(count > 0)
@@ -94,9 +98,15 @@ public class Trailer: ObservableObject {
         hues = (0..<count).map({ i in
             Double(i) / Double(count)
         })
-     
+
+        #if os(macOS)
+        timerLink = Timer(timeInterval: 1.0 / 60.0, target: self, selector: #selector(frameLoop), userInfo: nil, repeats: true)
+        RunLoop.current.add(timerLink, forMode: .common)
+        #else
         displayLink = CADisplayLink(target: self, selector: #selector(frameLoop))
         displayLink.add(to: .current, forMode: .common)
+        #endif
+     
         
     }
     

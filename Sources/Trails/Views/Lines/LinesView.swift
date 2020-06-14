@@ -42,8 +42,7 @@ struct LinesView_Previews: PreviewProvider {
             ZStack {
                 Color.primary.colorInvert()
                 LinesView(trailer: TrailerMock.make(),
-                          size: CGSize(width: UIScreen.main.bounds.width,
-                                       height: 200))
+                          size: CGSize(width: 300, height: 200))
 //                    .colorScheme(.dark)
 //                    .background(Color.black)
             }
