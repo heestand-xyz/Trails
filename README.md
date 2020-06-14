@@ -4,8 +4,8 @@
 
 SwiftUI View for Trails of Values over Time
 
-![](http://hexagons.net/external/trails/trails_demo_light_crop_480.gif)
-![](http://hexagons.net/external/trails/trails_demo_dark_480.gif)
+<img src="http://hexagons.net/external/trails/trails_demo_light_crop_480.gif" width="240" />
+<img src="http://hexagons.net/external/trails/trails_demo_dark_480.gif" width="240" />
 
 ## Setup
 
@@ -25,7 +25,7 @@ struct ContentView: View {
 
 ## Properties
 
-<img src="http://hexagons.net/external/trails/trails_property_default.png" width="250" />
+<img src="http://hexagons.net/external/trails/trails_property_default.png" width="240" />
 
 ~~~~swift 
 trailer.duration = 10.0
@@ -34,13 +34,13 @@ trailer.duration = 10.0
 > duration is in seconds
 
 
-<img src="http://hexagons.net/external/trails/trails_property_circles_active.png" width="250" />
+<img src="http://hexagons.net/external/trails/trails_property_circles_active.png" width="240" />
 
 ~~~~swift 
 trailer.circlesActive = true
 ~~~~
 
-<img src="http://hexagons.net/external/trails/trails_property_circles_border_and_radius.png" width="250" />
+<img src="http://hexagons.net/external/trails/trails_property_circles_border_and_radius.png" width="240" />
 
 ~~~~swift 
 trailer.circleBorder = false
@@ -48,20 +48,20 @@ trailer.circleRadius = 2.0
 ~~~~
 
 
-<img src="http://hexagons.net/external/trails/trails_property_line_width.png" width="250" />
+<img src="http://hexagons.net/external/trails/trails_property_line_width.png" width="240" />
 
 ~~~~swift 
 trailer.lineWidth = 3.0
 ~~~~
 
 
-<img src="http://hexagons.net/external/trails/trails_property_color_not_active.png" width="250" />
+<img src="http://hexagons.net/external/trails/trails_property_color_not_active.png" width="240" />
 
 ~~~~swift 
 trailer.colorsActive = false
 ~~~~
 
-<img src="http://hexagons.net/external/trails/trails_property_hues.png" width="250" />
+<img src="http://hexagons.net/external/trails/trails_property_hues.png" width="240" />
 
 ~~~~swift 
 trailer.hues = [0.0, 0.1, 0.2]
