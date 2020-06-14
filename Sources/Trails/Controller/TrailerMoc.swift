@@ -12,7 +12,7 @@ let mocStartDate: Date = Date()
 struct TrailerMoc {
     static func make() -> Trailer {
         let timeInterval: Double = 0.01
-        let count: Int = 3
+        let count: Int = 6
         let timeAmp: Double = 1.0
         let mocTrailer: Trailer = Trailer(count: count, duration: 1.0)
         var scales: [Double] = []

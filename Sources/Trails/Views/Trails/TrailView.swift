@@ -19,7 +19,7 @@ struct TrailView: View {
                                in: size,
                                with: trailer.allTimeValues[index],
                                for: trailer.duration,
-                               valueRange: trailer.valueRangeWithPadding,
+                               valueRange: trailer.fullValueRange,
                                drawEnds: trailer.drawEnds)
             }
                 .stroke(lineWidth: trailer.lineWidth)
@@ -29,7 +29,7 @@ struct TrailView: View {
                                     in: size,
                                     with: trailer.allTimeValues[index],
                                     for: trailer.duration,
-                                    valueRange: trailer.valueRangeWithPadding,
+                                    valueRange: trailer.fullValueRange,
                                     circleRadius: trailer.circleRadius)
                 }
             }
@@ -44,7 +44,7 @@ struct TrailView: View {
                                         in: size,
                                         with: trailer.allTimeValues[index],
                                         for: trailer.duration,
-                                        valueRange: trailer.valueRangeWithPadding,
+                                        valueRange: trailer.fullValueRange,
                                         circleRadius: trailer.circleRadius - trailer.lineWidth)
                     }
                         .foregroundColor(.black)

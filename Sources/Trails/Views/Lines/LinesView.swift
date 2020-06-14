@@ -16,15 +16,15 @@ struct LinesView: View {
                 PathLines.draw(on: &path,
                                in: size,
                                valueLines: self.trailer.bigValueLines,
-                               valueRange: self.trailer.valueRangeWithPadding)
+                               valueRange: self.trailer.fullValueRange)
             }
             .stroke(lineWidth: trailer.lineWidth * 1.5)
-                .opacity(0.25)
+            .opacity(0.25)
             Path { path in
                 PathLines.draw(on: &path,
                                in: size,
                                valueLines: self.trailer.smallValueLines,
-                               valueRange: self.trailer.valueRangeWithPadding)
+                               valueRange: self.trailer.fullValueRange)
             }
                 .stroke(lineWidth: trailer.lineWidth)
                 .opacity(0.125)

@@ -11,7 +11,23 @@ public class Trailer: ObservableObject {
     @Published public var duration: Double
     
     @Published var allTimeValues: [[TimeValue]]
-    var valueRange: ClosedRange<Double> {
+    var lastValuesAndHues: [(value: Double, hue: Double)] {
+        zip(lastValues, lastHues).map { zip -> (value: Double, hue: Double) in
+            (value: zip.0, hue: zip.1)
+        }
+    }
+    var lastValues: [Double] { allTimeValues.compactMap(\.last).map(\.value) }
+    var lastHues: [Double] {
+        var hues: [Double] = []
+        for (i, timeValues) in allTimeValues.enumerated() {
+            if !timeValues.isEmpty {
+                let hue: Double = self.hues[i]
+                hues.append(hue)
+            }
+        }
+        return hues
+    }
+    private var valueRange: ClosedRange<Double> {
         var min: Double!
         var max: Double!
         for timeValues in allTimeValues {
@@ -29,7 +45,7 @@ public class Trailer: ObservableObject {
         }
         return min...max
     }
-    var valueRangeWithPadding: ClosedRange<Double> {
+    var fullValueRange: ClosedRange<Double> {
         let range: Double = valueRange.upperBound - valueRange.lowerBound
         guard range > 0.0 else { return valueRange }
         let padding: Double = range * paddingFraction
@@ -37,20 +53,32 @@ public class Trailer: ObservableObject {
     }
     @Published public var paddingFraction: Double = 0.1
     
+    var magnitude: Double {
+        Trailer.getMagnitude(in: valueRange)
+    }
+    
     var smallNonBigValueLines: [Double] {
         smallValueLines.filter { value -> Bool in
             !bigValueLines.contains(value)
         }
     }
     var smallValueLines: [Double] {
-        Trailer.getMagnitudes(in: valueRange, detail: 0.25, padding: 2)
+        Trailer.getMagnitudes(in: valueRange, at: magnitude, detail: 0.25, padding: 2)
     }
     var bigValueLines: [Double] {
-        Trailer.getMagnitudes(in: valueRange)
+        Trailer.getMagnitudes(in: valueRange, at: magnitude)
     }
     
     @Published public var colorsActive: Bool
-    @Published public var colors: [Color]
+    @Published public var hues: [Double]
+    public var colors: [Color] {
+        hues.map({ hue in
+            Color(hue: hue,
+                  saturation: 2 / 3,
+                  brightness: 1.0,
+                  opacity: 1.0)
+        })
+    }
     @Published public var colorBlend: Bool = true
 
     @Published public var lineWidth: CGFloat = 1
@@ -71,11 +99,8 @@ public class Trailer: ObservableObject {
         
         allTimeValues = .init(repeating: [], count: count)
         colorsActive = count > 1
-        colors = (0..<count).map({ i in
-            Color(hue: Double(i) / Double(count),
-                  saturation: 2 / 3,
-                  brightness: 1.0,
-                  opacity: 1.0)
+        hues = (0..<count).map({ i in
+            Double(i) / Double(count)
         })
      
         displayLink = CADisplayLink(target: self, selector: #selector(frameLoop))
@@ -126,18 +151,14 @@ public class Trailer: ObservableObject {
             }
         }
     }
-
-    static func getMagnitudes(in range: ClosedRange<Double>,
-                       detail: Double = 1.0,
-                       padding: Int = 0) -> [Double] {
-        precondition(detail != 0.0)
-        precondition(padding >= 0)
+    
+    static func getMagnitude(in range: ClosedRange<Double>) -> Double {
 
         let low: Double = range.lowerBound
         let high: Double = range.upperBound
         let span: Double = high - low
 
-        var magnitude: Double!
+        var magnitude: Double?
         if span >= 0.5 && span <= 5.0 {
             magnitude = 1.0
         }
@@ -161,8 +182,29 @@ public class Trailer: ObservableObject {
                 }
             }
         }
-        guard magnitude != nil else { return [] }
         
+        return magnitude ?? 1.0
+        
+    }
+    
+    static func getMagnitudes(in range: ClosedRange<Double>,
+                              detail: Double = 1.0,
+                              padding: Int = 0) -> [Double] {
+        let magnitude: Double = getMagnitude(in: range)
+        return getMagnitudes(in: range, at: magnitude, detail: detail, padding: padding)
+    }
+    
+    static func getMagnitudes(in range: ClosedRange<Double>,
+                              at magnitude: Double,
+                              detail: Double = 1.0,
+                              padding: Int = 0) -> [Double] {
+        precondition(detail != 0.0)
+        precondition(padding >= 0)
+
+        let low: Double = range.lowerBound
+        let high: Double = range.upperBound
+
+        var magnitude: Double = magnitude
         magnitude *= detail
             
         var magnitudes: [Double] = []
