@@ -133,4 +133,10 @@ trailer.colorBlend = false
 
 ## Mock
 
-To repilcate the gifs, use `let trailer: Trailer = TrailerMock.make()`, provided by [TrailerMock.swift](https://github.com/hexagons/Trails/blob/master/Sources/Trails/Controller/TrailerMock.swift)
+To repilcate the randomness seen in the gifs in the top of the redame, use this code:
+
+~~~~swift 
+let trailer: Trailer = TrailerMock.make()
+~~~~
+
+provided by [TrailerMock.swift](https://github.com/hexagons/Trails/blob/master/Sources/Trails/Controller/TrailerMock.swift)
