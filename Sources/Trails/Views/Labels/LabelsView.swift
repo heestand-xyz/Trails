@@ -48,7 +48,7 @@ struct LabelsView_Previews: PreviewProvider {
                 .opacity(0.5)
             ZStack {
                 Color.primary.colorInvert()
-                LabelsView(trailer: TrailerMoc.make(),
+                LabelsView(trailer: TrailerMock.make(),
                            height: 200)
 //                    .colorScheme(.dark)
 //                    .background(Color.black)

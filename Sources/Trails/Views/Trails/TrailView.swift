@@ -79,7 +79,7 @@ struct TrailView_Previews: PreviewProvider {
                 .opacity(0.5)
             ZStack {
                 Color.primary.colorInvert()
-                TrailView(trailer: TrailerMoc.make(),
+                TrailView(trailer: TrailerMock.make(),
                           index: 0,
                           size: CGSize(width: 300, height: 300))
 //                    .colorScheme(.dark)

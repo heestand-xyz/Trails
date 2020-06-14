@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+
 struct TrailsView: View {
     let kLabelWidth: CGFloat = 40
     let kSpacing: CGFloat = 20
@@ -70,7 +71,7 @@ struct TrailsView_Previews: PreviewProvider {
                 .opacity(0.5)
             ZStack {
                 Color.primary.colorInvert()
-                TrailsView(trailer: TrailerMoc.make())
+                TrailsView(trailer: TrailerMock.make())
 //                    .colorScheme(.dark)
 //                    .background(Color.black)
             }

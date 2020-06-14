@@ -67,7 +67,7 @@ struct LiveLabelsView_Previews: PreviewProvider {
                 .opacity(0.5)
             ZStack {
                 Color.primary.colorInvert()
-                LiveLabelsView(trailer: TrailerMoc.make(),
+                LiveLabelsView(trailer: TrailerMock.make(),
                            height: 200)
 //                    .colorScheme(.dark)
 //                    .background(Color.black)
