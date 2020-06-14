@@ -115,9 +115,9 @@ trailer.lineWidth = 3.0
 trailer.colorsActive = false
 ~~~~
 
-> when count is `1`, `c.olorsActive` is `false`
+> when count is `1`, `.colorsActive` is `false` by *default*
 
-> when count is more than `1`, `.colorsActive` is `true`
+> when count is `2` or more, `.colorsActive` is `true` by *default*
 
 <img src="http://hexagons.net/external/trails/trails_property_hues.png" width="240" />
 
@@ -129,13 +129,15 @@ trailer.hues = [0.0, 0.1, 0.2]
 
 > `.hues` is "rainbow" by *default*
 
+> a hue is a value between `0.0` and `1.0`, low values: *red to green*, middle values: *green to blue*, high values: *blue to red*
+
 ~~~~swift 
 trailer.colorBlend = false
 ~~~~
 
-> when `.colorBlend` is `false` the lines will not be blended. this option is visible when a lot of lines overlap.
+> when `.colorBlend` is `false` the lines will not be blended. this option is visible when a lot of lines overlap
 
-> when `.colorBlend` is `true`, in light mode the lines will be blended with `.multiply` and in dark mode the lines will be blended with `.lighten`
+> when `.colorBlend` is `true`, **light mode** blends with `.multiply`, **dark mode** blends with `.lighten`
 
 > `.colorBlend` is `true` by *default*
 
@@ -143,7 +145,7 @@ trailer.colorBlend = false
 trailer.drawValueBackground = false
 ~~~~
 
-> user this if your background is transparent
+> user this if your background is **transparent**
 > `.drawValueBackground` is `true` by *default*
 
 ~~~~swift 
@@ -160,7 +162,7 @@ trailer.fontSize = 12.0
 
 ## Mock
 
-To repilcate the randomness seen in the gifs in the top of this redame, use this code:
+To repilcate the **randomness** seen in the gifs in the top of this readme, use this code:
 
 ~~~~swift 
 let trailer: Trailer = TrailerMock.make()
