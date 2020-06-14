@@ -116,7 +116,7 @@ trailer.colorsActive = false
 trailer.hues = [0.0, 0.1, 0.2]
 ~~~~
 
-> the number of hues must match the count passed to `Trailer`
+> the number of hues **must match** the count passed to `Trailer`
 
 > `.hues` is "rainbow" by *default*
 
@@ -129,6 +129,25 @@ trailer.colorBlend = false
 > when `.colorBlend` is `true`, in light mode the lines will be blended with `.multiply` and in dark mode the lines will be blended with `.lighten`
 
 > `.colorBlend` is `true` by *default*
+
+~~~~swift 
+trailer.drawValueBackground = false
+~~~~
+
+> user this if your background is transparent
+> `.drawValueBackground` is `true` by *default*
+
+~~~~swift 
+trailer.drawValueEndLines = false
+~~~~
+
+> `.drawValueEndLines` is `true` by *default*
+
+~~~~swift 
+trailer.fontSize = 12.0
+~~~~
+
+> `.fontSize` is `8.0` by *default*
 
 ## Mock
 
