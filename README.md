@@ -4,8 +4,8 @@
 
 SwiftUI View for Trails of Values over Time
 
-<img src="http://hexagons.net/external/trails/trails_demo_light_crop_480.gif" width="240" />
-<img src="http://hexagons.net/external/trails/trails_demo_dark_480.gif" width="240" />
+![](http://hexagons.net/external/trails/trails_demo_light_crop.gif)
+![](http://hexagons.net/external/trails/trails_demo_dark.gif)
 
 ## Setup
 
