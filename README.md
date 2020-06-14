@@ -60,8 +60,7 @@ class Main {
 
 ## Properties
 
-<img src="http://hexagons.net/external/trails/trails_property_
-.png" width="240" />
+<img src="http://hexagons.net/external/trails/trails_property_default.png" width="240" />
 
 ~~~~swift 
 trailer.duration = 10.0
