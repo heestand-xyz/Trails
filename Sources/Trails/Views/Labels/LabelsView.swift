@@ -5,8 +5,11 @@
 //  Created by Hexagons on 2020-06-12.
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
+#endif
 
+@available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 struct LabelsView: View {
     @ObservedObject var trailer: Trailer
     let height: CGFloat
@@ -52,6 +55,7 @@ struct LabelsView: View {
     }
 }
 
+@available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 struct LabelsView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {

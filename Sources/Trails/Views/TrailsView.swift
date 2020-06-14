@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 public struct TrailsView: View {
     var labelWidth: CGFloat { trailer.fontSize * 4 }
     let kSpacing: CGFloat = 20
@@ -66,6 +67,7 @@ public struct TrailsView: View {
     }
 }
 
+@available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 struct TrailsView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {

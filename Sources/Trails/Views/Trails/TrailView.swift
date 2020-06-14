@@ -5,8 +5,11 @@
 //  Created by Hexagons on 2020-06-12.
 //
 
+#if canImport(SwiftUI)
 import SwiftUI
+#endif
 
+@available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 struct TrailView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @ObservedObject var trailer: Trailer
@@ -71,6 +74,7 @@ struct TrailView: View {
     }
 }
 
+@available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 struct TrailView_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {

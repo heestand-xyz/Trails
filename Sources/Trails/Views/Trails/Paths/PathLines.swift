@@ -7,8 +7,11 @@
 
 import Foundation
 import CoreGraphics
+#if canImport(SwiftUI)
 import SwiftUI
+#endif
 
+@available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 struct PathLines {
     static func draw(on path: inout Path,
                      in size: CGSize,

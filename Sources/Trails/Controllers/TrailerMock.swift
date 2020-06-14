@@ -9,6 +9,7 @@ import Foundation
 
 let mockStartDate: Date = Date()
 
+@available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 public struct TrailerMock {
     public static func make() -> Trailer {
         let timeInterval: Double = 0.01
