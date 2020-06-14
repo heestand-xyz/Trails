@@ -14,12 +14,49 @@ import SwiftUI
 import Trails
 ~~~~
 
-~~~~swift 
+~~~~swift
 struct ContentView: View {
+    var main: Main = Main()
     var body: some View {
-        TrailsView(trailer: TrailerMock.make())
+        TrailsView(trailer: main.trailer)
             .frame(height: 200)
     }
+}
+~~~~
+
+~~~~swift
+class Main {
+    
+    let trailer: Trailer
+    
+    init() {
+        
+        let trailCount: Int = 3
+        let seconds: Double = 10.0
+        trailer = Trailer(count: trailCount,
+                          duration: seconds)
+        trailer.circlesActive = true
+        
+        startTimer()
+        
+    }
+    
+    func startTimer()  {
+        
+        let startDate: Date = Date()
+        let timer: Timer = Timer(timeInterval: 0.5, repeats: true) { _ in
+            let time: Double = -startDate.timeIntervalSinceNow
+            let valueA: Double = cos(time)
+            let valueB: Double = cos(time + (.pi * 2) * (1.0 / 3.0))
+            let valueC: Double = cos(time + (.pi * 2) * (2.0 / 3.0))
+            self.trailer.add(valueA, at: 0)
+            self.trailer.add(valueB, at: 1)
+            self.trailer.add(valueC, at: 2)
+        }
+        RunLoop.current.add(timer, forMode: .common)
+        
+    }
+    
 }
 ~~~~
 
