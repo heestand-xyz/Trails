@@ -2,8 +2,6 @@
 
 # Trails
 
-SwiftUI View for Trails of Values over Time
-
 ![](http://hexagons.net/external/trails/trails_demo_light_crop.gif)
 ![](http://hexagons.net/external/trails/trails_demo_dark.gif)
 
