@@ -35,10 +35,19 @@ struct LinesView: View {
 
 struct LinesView_Previews: PreviewProvider {
     static var previews: some View {
-        LinesView(trailer: TrailerMoc.make(), size: CGSize(width: 300, height: 300))
-//            .colorScheme(.dark)
-//            .background(Color.black)
-            .frame(width: 300, height: 300)
-            .border(Color.primary)
+        ZStack {
+            Color.primary
+                .edgesIgnoringSafeArea(.all)
+                .opacity(0.5)
+            ZStack {
+                Color.primary.colorInvert()
+                LinesView(trailer: TrailerMoc.make(),
+                          size: CGSize(width: UIScreen.main.bounds.width,
+                                       height: 200))
+//                    .colorScheme(.dark)
+//                    .background(Color.black)
+            }
+            .frame(height: 200)
+        }
     }
 }

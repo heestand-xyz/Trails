@@ -62,11 +62,19 @@ struct TrailView: View {
 
 struct TrailView_Previews: PreviewProvider {
     static var previews: some View {
-        let trailer: Trailer = TrailerMoc.make()
-        return TrailView(trailer: trailer, index: 0, size: CGSize(width: 300, height: 300))
-//            .colorScheme(.dark)
-//            .background(Color.black)
-            .frame(width: 300, height: 300)
-            .border(Color.primary)
+        ZStack {
+            Color.primary
+                .edgesIgnoringSafeArea(.all)
+                .opacity(0.5)
+            ZStack {
+                Color.primary.colorInvert()
+                TrailView(trailer: TrailerMoc.make(),
+                          index: 0,
+                          size: CGSize(width: 300, height: 300))
+//                    .colorScheme(.dark)
+//                    .background(Color.black)
+            }
+            .frame(height: 200)
+        }
     }
 }
