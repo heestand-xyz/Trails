@@ -7,11 +7,14 @@
 
 import SwiftUI
 
-struct TrailsView: View {
+public struct TrailsView: View {
     let kLabelWidth: CGFloat = 40
     let kSpacing: CGFloat = 20
     @ObservedObject var trailer: Trailer
-    var body: some View {
+    public init(trailer: Trailer) {
+        self.trailer = trailer
+    }
+    public var body: some View {
         GeometryReader { geo in
             ZStack {
                 LinesView(trailer: self.trailer,

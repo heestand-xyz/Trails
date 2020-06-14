@@ -51,7 +51,7 @@ public class Trailer: ObservableObject {
         let padding: Double = range * paddingFraction
         return (valueRange.lowerBound - padding)...(valueRange.upperBound + padding)
     }
-    @Published public var paddingFraction: Double = 0.1
+    @Published var paddingFraction: Double = 0.1
     
     var magnitude: Double {
         Trailer.getMagnitude(in: valueRange)
@@ -73,11 +73,11 @@ public class Trailer: ObservableObject {
     @Published public var hues: [Double]
     @Published public var colorBlend: Bool = true
 
-    @Published public var lineWidth: CGFloat = 1
+    @Published public var lineWidth: CGFloat = 1.0
     
-    @Published public var circlesActive: Bool = true
+    @Published public var circlesActive: Bool = false
     @Published public var circleBorder: Bool = true
-    @Published public var circleRadius: CGFloat = 4
+    @Published public var circleRadius: CGFloat = 3.0
     
     @Published var drawEnds: Bool = true
     
@@ -100,7 +100,11 @@ public class Trailer: ObservableObject {
         
     }
     
-    public func add(_ value: Double, at index: Int = 0) {
+    public func addFirst(_ value: Double) {
+        add(value, at: 0)
+    }
+    
+    public func add(_ value: Double, at index: Int) {
         precondition(index >= 0)
         precondition(index < count)
         guard duration > 0.0 else { return }
