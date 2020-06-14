@@ -12,7 +12,7 @@ struct LiveLabelsView: View {
     @ObservedObject var trailer: Trailer
     let height: CGFloat
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack(alignment: .topTrailing) {
             Color.clear
             ForEach(trailer.lastValuesAndHues, id: \.hue) { valueAndHue in
                 ZStack {
@@ -27,9 +27,15 @@ struct LiveLabelsView: View {
                 }
                     .offset(y: self.getOffset(value: valueAndHue.value) - (self.trailer.fontSize * (5 / 8)))
             }
-                .font(.system(size: self.trailer.fontSize, weight: .bold, design: .monospaced))
+                .font(.system(size: self.trailer.fontSize, weight: .bold, design: {
+                    #if !os(watchOS)
+                    return .monospaced
+                    #else
+                    return .default
+                    #endif
+                }()))
         }
-            .padding(.leading, 5)
+            .padding(.trailing, 5)
             .clipped()
     }
     func getText(value: Double) -> String {

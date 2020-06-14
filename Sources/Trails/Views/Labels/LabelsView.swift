@@ -11,18 +11,30 @@ struct LabelsView: View {
     @ObservedObject var trailer: Trailer
     let height: CGFloat
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack(alignment: .topLeading) {
             Color.clear
             ForEach(trailer.smallNonBigValueLines, id: \.self) { value in
                 Text(self.getText(value: value))
                     .offset(y: self.getOffset(value: value) - (self.trailer.fontSize * (5 / 8)))
             }
-                .font(.system(size: self.trailer.fontSize, weight: .regular, design: .monospaced))
+                .font(.system(size: self.trailer.fontSize, weight: .regular, design: {
+                    #if !os(watchOS)
+                    return .monospaced
+                    #else
+                    return .default
+                    #endif
+                }()))
             ForEach(trailer.bigValueLines, id: \.self) { value in
                 Text(self.getText(value: value))
                     .offset(y: self.getOffset(value: value) - (self.trailer.fontSize * (5 / 8)))
             }
-                .font(.system(size: self.trailer.fontSize, weight: .bold, design: .monospaced))
+                .font(.system(size: self.trailer.fontSize, weight: .bold, design: {
+                    #if !os(watchOS)
+                    return .monospaced
+                    #else
+                    return .default
+                    #endif
+                }()))
         }
             .padding(.leading, 5)
             .clipped()

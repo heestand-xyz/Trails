@@ -1,5 +1,7 @@
 import Foundation
+#if os(iOS) || os(tvOS)
 import QuartzCore.CoreAnimation
+#endif
 import SwiftUI
 
 public class Trailer: ObservableObject {
@@ -84,10 +86,10 @@ public class Trailer: ObservableObject {
     
     @Published public var fontSize: CGFloat = 8.0
 
-    #if os(macOS)
-    var timerLink: Timer!
-    #else
+    #if os(iOS) || os(tvOS)
     var displayLink: CADisplayLink!
+    #else
+    var timerLink: Timer!
     #endif
     
     public init(count: Int = 1, duration: Double) {
@@ -101,13 +103,13 @@ public class Trailer: ObservableObject {
         hues = (0..<count).map({ i in
             Double(i) / Double(count)
         })
-
-        #if os(macOS)
-        timerLink = Timer(timeInterval: 1.0 / 60.0, target: self, selector: #selector(frameLoop), userInfo: nil, repeats: true)
-        RunLoop.current.add(timerLink, forMode: .common)
-        #else
+        
+        #if os(iOS) || os(tvOS)
         displayLink = CADisplayLink(target: self, selector: #selector(frameLoop))
         displayLink.add(to: .current, forMode: .common)
+        #else
+        timerLink = Timer(timeInterval: 1.0 / 60.0, target: self, selector: #selector(frameLoop), userInfo: nil, repeats: true)
+        RunLoop.current.add(timerLink, forMode: .common)
         #endif
      
         
