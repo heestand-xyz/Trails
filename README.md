@@ -5,6 +5,16 @@
 ![](http://hexagons.net/external/trails/trails_demo_light_crop.gif)
 ![](http://hexagons.net/external/trails/trails_demo_dark.gif)
 
+*works on __iOS__, __tvOS__, __watchOS__ and __macOS__*
+
+## Install
+
+### Swift Package
+
+~~~~swift
+.package(url: "https://github.com/hexagons/Trails.git", from: "1.0.0")
+~~~~
+
 ## Setup
 
 ~~~~swift
@@ -17,7 +27,6 @@ struct ContentView: View {
     var main: Main = Main()
     var body: some View {
         TrailsView(trailer: main.trailer)
-            .frame(height: 200)
     }
 }
 ~~~~
