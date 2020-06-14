@@ -15,7 +15,7 @@ struct PathTrail {
                      with timeValues: [TimeValue],
                      for duration: Double,
                      valueRange: ClosedRange<Double>,
-                     drawEnds: Bool) {
+                     drawValueEndLines: Bool) {
         let w: CGFloat = size.width
         let h: CGFloat = size.height
         for (i, timeValue) in timeValues.enumerated() {
@@ -23,7 +23,7 @@ struct PathTrail {
             let x: CGFloat = w - w * CGFloat(timeFraction)
             let valueFraction: Double = (timeValue.value - valueRange.lowerBound) / (valueRange.upperBound - valueRange.lowerBound)
             let y: CGFloat = h - h * CGFloat(valueFraction)
-            if drawEnds {
+            if drawValueEndLines {
                 if i == 0 {
                     path.move(to: CGPoint(x: 0.0, y: y))
                 }
@@ -32,11 +32,11 @@ struct PathTrail {
                     path.addLine(to: CGPoint(x: w, y: y))
                 }
             } else {
-//                if i == 0 {
-//                    path.move(to: CGPoint(x: x, y: y))
-//                } else {
-//                    path.addLine(to: CGPoint(x: x, y: y))
-//                }
+                if i == 0 {
+                    path.move(to: CGPoint(x: x, y: y))
+                } else {
+                    path.addLine(to: CGPoint(x: x, y: y))
+                }
             }
         }
     }

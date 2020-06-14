@@ -15,14 +15,14 @@ struct LabelsView: View {
             Color.clear
             ForEach(trailer.smallNonBigValueLines, id: \.self) { value in
                 Text(self.getText(value: value))
-                    .offset(y: self.getOffset(value: value) - 5)
+                    .offset(y: self.getOffset(value: value) - (self.trailer.fontSize * (5 / 8)))
             }
-                .font(.system(size: 8, weight: .regular, design: .monospaced))
+                .font(.system(size: self.trailer.fontSize, weight: .regular, design: .monospaced))
             ForEach(trailer.bigValueLines, id: \.self) { value in
                 Text(self.getText(value: value))
-                    .offset(y: self.getOffset(value: value) - 5)
+                    .offset(y: self.getOffset(value: value) - (self.trailer.fontSize * (5 / 8)))
             }
-                .font(.system(size: 8, weight: .bold, design: .monospaced))
+                .font(.system(size: self.trailer.fontSize, weight: .bold, design: .monospaced))
         }
             .padding(.leading, 5)
             .clipped()

@@ -5,7 +5,7 @@ let package = Package(
     name: "Trails",
     platforms: [
         .iOS(.v13),
-//        .tvOS(.v13),
+        .tvOS(.v13),
 //        .watchOS(.v6),
         .macOS(.v10_15),
     ],

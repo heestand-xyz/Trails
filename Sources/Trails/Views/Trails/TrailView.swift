@@ -20,7 +20,7 @@ struct TrailView: View {
                                with: trailer.allTimeValues[index],
                                for: trailer.duration,
                                valueRange: trailer.fullValueRange,
-                               drawEnds: trailer.drawEnds)
+                               drawValueEndLines: trailer.drawValueEndLines)
             }
                 .stroke(lineWidth: trailer.lineWidth)
             if trailer.circlesActive {

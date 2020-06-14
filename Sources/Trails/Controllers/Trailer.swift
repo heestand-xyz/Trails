@@ -78,9 +78,12 @@ public class Trailer: ObservableObject {
     @Published public var circlesActive: Bool = false
     @Published public var circleBorder: Bool = true
     @Published public var circleRadius: CGFloat = 3.0
+
+    @Published public var drawValueBackground: Bool = true
+    @Published public var drawValueEndLines: Bool = true
     
-    @Published var drawEnds: Bool = true
-    
+    @Published public var fontSize: CGFloat = 8.0
+
     #if os(macOS)
     var timerLink: Timer!
     #else

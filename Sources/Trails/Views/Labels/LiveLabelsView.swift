@@ -16,16 +16,18 @@ struct LiveLabelsView: View {
             Color.clear
             ForEach(trailer.lastValuesAndHues, id: \.hue) { valueAndHue in
                 ZStack {
-                    Color.primary
-                        .colorInvert()
-                        .opacity(0.75)
+                    if self.trailer.drawValueBackground {
+                        Color.primary
+                            .colorInvert()
+                            .opacity(0.75)
+                    }
                     Text(self.getText(value: valueAndHue.value))
                         .foregroundColor(self.getColor(hue: valueAndHue.hue))
                         .layoutPriority(1)
                 }
-                    .offset(y: self.getOffset(value: valueAndHue.value) - 5)
+                    .offset(y: self.getOffset(value: valueAndHue.value) - (self.trailer.fontSize * (5 / 8)))
             }
-                .font(.system(size: 8, weight: .bold, design: .monospaced))
+                .font(.system(size: self.trailer.fontSize, weight: .bold, design: .monospaced))
         }
             .padding(.leading, 5)
             .clipped()

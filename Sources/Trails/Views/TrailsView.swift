@@ -8,7 +8,7 @@
 import SwiftUI
 
 public struct TrailsView: View {
-    let kLabelWidth: CGFloat = 40
+    var labelWidth: CGFloat { trailer.fontSize * 4 }
     let kSpacing: CGFloat = 20
     @ObservedObject var trailer: Trailer
     public init(trailer: Trailer) {
@@ -21,13 +21,13 @@ public struct TrailsView: View {
                           size: geo.size)
                     .mask(LinearGradient(gradient: Gradient(stops: [
                         Gradient.Stop(color: Color(.displayP3, white: 1.0, opacity: 0.25),
-                                      location: self.kLabelWidth / geo.size.width),
+                                      location: self.labelWidth / geo.size.width),
                         Gradient.Stop(color: .white,
-                                      location: (self.kLabelWidth + self.kSpacing) / geo.size.width),
+                                      location: (self.labelWidth + self.kSpacing) / geo.size.width),
                         Gradient.Stop(color: .white,
-                                      location: (geo.size.width - self.kLabelWidth - self.kSpacing) / geo.size.width),
+                                      location: (geo.size.width - self.labelWidth - self.kSpacing) / geo.size.width),
                         Gradient.Stop(color: Color(.displayP3, white: 1.0, opacity: 0.25),
-                                      location: (geo.size.width - self.kLabelWidth) / geo.size.width),
+                                      location: (geo.size.width - self.labelWidth) / geo.size.width),
                     ]),
                                          startPoint: .leading,
                                          endPoint: .trailing))
@@ -35,31 +35,31 @@ public struct TrailsView: View {
                     ForEach(0..<self.trailer.count) { i in
                         TrailView(trailer: self.trailer,
                                   index: i,
-                                  size: CGSize(width: geo.size.width - self.kLabelWidth * 2,
+                                  size: CGSize(width: geo.size.width - self.labelWidth * 2,
                                                height: geo.size.height))
-                            .offset(x: self.kLabelWidth)
+                            .offset(x: self.labelWidth)
                     }
                 }
                     .mask(LinearGradient(gradient: Gradient(stops: [
                         Gradient.Stop(color: .clear,
-                                      location: self.kLabelWidth / geo.size.width),
+                                      location: self.labelWidth / geo.size.width),
                         Gradient.Stop(color: .white,
-                                      location: (self.kLabelWidth + self.kSpacing) / geo.size.width),
+                                      location: (self.labelWidth + self.kSpacing) / geo.size.width),
                         Gradient.Stop(color: .white,
-                                      location: (geo.size.width - self.kLabelWidth - self.kSpacing) / geo.size.width),
+                                      location: (geo.size.width - self.labelWidth - self.kSpacing) / geo.size.width),
                         Gradient.Stop(color: .clear,
-                                      location: (geo.size.width - self.kLabelWidth) / geo.size.width),
+                                      location: (geo.size.width - self.labelWidth) / geo.size.width),
                     ]),
                                          startPoint: .leading,
                                          endPoint: .trailing))
                 HStack(spacing: self.kSpacing) {
                     LabelsView(trailer: self.trailer,
                                height: geo.size.height)
-                        .frame(width: self.kLabelWidth)
+                        .frame(width: self.labelWidth)
                     Spacer()
                     LiveLabelsView(trailer: self.trailer,
                                    height: geo.size.height)
-                        .frame(width: self.kLabelWidth)
+                        .frame(width: self.labelWidth)
                 }
             }
         }
