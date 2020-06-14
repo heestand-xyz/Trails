@@ -60,7 +60,8 @@ class Main {
 
 ## Properties
 
-<img src="http://hexagons.net/external/trails/trails_property_default.png" width="240" />
+<img src="http://hexagons.net/external/trails/trails_property_
+.png" width="240" />
 
 ~~~~swift 
 trailer.duration = 10.0
@@ -78,7 +79,7 @@ trailer.duration = 10.0
 trailer.circlesActive = true
 ~~~~
 
-> `.circlesActive` default is `false`
+> `.circlesActive` *default* is `false`
 
 <img src="http://hexagons.net/external/trails/trails_property_circles_border_and_radius.png" width="240" />
 
@@ -87,9 +88,9 @@ trailer.circleBorder = false
 trailer.circleRadius = 2.0
 ~~~~
 
-> `.circleBorder` default is `true`
+> `.circleBorder` *default* is `true`
 
-> `.circleRadius` default is `3.0`
+> `.circleRadius` *default* is `3.0`
 
 
 <img src="http://hexagons.net/external/trails/trails_property_line_width.png" width="240" />
@@ -98,7 +99,7 @@ trailer.circleRadius = 2.0
 trailer.lineWidth = 3.0
 ~~~~
 
-> `.lineWidth` default is `1.0`
+> `.lineWidth` *default* is `1.0`
 
 <img src="http://hexagons.net/external/trails/trails_property_color_not_active.png" width="240" />
 
@@ -118,7 +119,7 @@ trailer.hues = [0.0, 0.1, 0.2]
 
 > the number of hues must match the count passed to `Trailer`
 
-> `.hues` is "rainbow" by default
+> `.hues` is "rainbow" by *default*
 
 ~~~~swift 
 trailer.colorBlend = false
@@ -128,7 +129,7 @@ trailer.colorBlend = false
 
 > when `.colorBlend` is `true`, in light mode the lines will be blended with `.multiply` and in dark mode the lines will be blended with `.lighten`
 
-> `.colorBlend` is `true` by default
+> `.colorBlend` is `true` by *default*
 
 ## Mock
 
