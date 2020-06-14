@@ -5,6 +5,16 @@
 ![](http://hexagons.net/external/trails/trails_demo_light_crop.gif)
 ![](http://hexagons.net/external/trails/trails_demo_dark.gif)
 
+*works on __iOS__, __tvOS__, __watchOS__ and __macOS__*
+
+## Install
+
+### Swift Package
+
+~~~~swift
+.package(url: "https://github.com/hexagons/Trails.git", from: "1.0.0")
+~~~~
+
 ## Setup
 
 ~~~~swift
@@ -17,7 +27,6 @@ struct ContentView: View {
     var main: Main = Main()
     var body: some View {
         TrailsView(trailer: main.trailer)
-            .frame(height: 200)
     }
 }
 ~~~~
@@ -60,8 +69,7 @@ class Main {
 
 ## Properties
 
-<img src="http://hexagons.net/external/trails/trails_property_
-.png" width="240" />
+<img src="http://hexagons.net/external/trails/trails_property_default.png" width="240" />
 
 ~~~~swift 
 trailer.duration = 10.0
@@ -117,7 +125,7 @@ trailer.colorsActive = false
 trailer.hues = [0.0, 0.1, 0.2]
 ~~~~
 
-> the number of hues must match the count passed to `Trailer`
+> the number of hues **must match** the count passed to `Trailer`
 
 > `.hues` is "rainbow" by *default*
 
@@ -131,9 +139,28 @@ trailer.colorBlend = false
 
 > `.colorBlend` is `true` by *default*
 
+~~~~swift 
+trailer.drawValueBackground = false
+~~~~
+
+> user this if your background is transparent
+> `.drawValueBackground` is `true` by *default*
+
+~~~~swift 
+trailer.drawValueEndLines = false
+~~~~
+
+> `.drawValueEndLines` is `true` by *default*
+
+~~~~swift 
+trailer.fontSize = 12.0
+~~~~
+
+> `.fontSize` is `8.0` by *default*
+
 ## Mock
 
-To repilcate the randomness seen in the gifs in the top of the redame, use this code:
+To repilcate the randomness seen in the gifs in the top of this redame, use this code:
 
 ~~~~swift 
 let trailer: Trailer = TrailerMock.make()
