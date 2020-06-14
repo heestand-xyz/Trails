@@ -151,7 +151,7 @@ trailer.fontSize = 12.0
 
 ## Mock
 
-To repilcate the randomness seen in the gifs in the top of the redame, use this code:
+To repilcate the randomness seen in the gifs in the top of this redame, use this code:
 
 ~~~~swift 
 let trailer: Trailer = TrailerMock.make()
