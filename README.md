@@ -67,7 +67,9 @@ trailer.duration = 10.0
 ~~~~
 
 > duration is in **seconds**
+
 > `.duration` can be changed while running
+
 > values added longer ago than the duration will be removed
 
 <img src="http://hexagons.net/external/trails/trails_property_circles_active.png" width="240" />
@@ -75,6 +77,7 @@ trailer.duration = 10.0
 ~~~~swift 
 trailer.circlesActive = true
 ~~~~
+
 > `.circlesActive` default is `false`
 
 <img src="http://hexagons.net/external/trails/trails_property_circles_border_and_radius.png" width="240" />
@@ -83,7 +86,9 @@ trailer.circlesActive = true
 trailer.circleBorder = false
 trailer.circleRadius = 2.0
 ~~~~
+
 > `.circleBorder` default is `true`
+
 > `.circleRadius` default is `3.0`
 
 
@@ -92,6 +97,7 @@ trailer.circleRadius = 2.0
 ~~~~swift 
 trailer.lineWidth = 3.0
 ~~~~
+
 > `.lineWidth` default is `1.0`
 
 <img src="http://hexagons.net/external/trails/trails_property_color_not_active.png" width="240" />
@@ -99,7 +105,9 @@ trailer.lineWidth = 3.0
 ~~~~swift 
 trailer.colorsActive = false
 ~~~~
+
 > when count is `1`, `c.olorsActive` is `false`
+
 > when count is more than `1`, `.colorsActive` is `true`
 
 <img src="http://hexagons.net/external/trails/trails_property_hues.png" width="240" />
@@ -109,6 +117,7 @@ trailer.hues = [0.0, 0.1, 0.2]
 ~~~~
 
 > the number of hues must match the count passed to `Trailer`
+
 > `.hues` is "rainbow" by default
 
 ~~~~swift 
@@ -116,7 +125,9 @@ trailer.colorBlend = false
 ~~~~
 
 > when `.colorBlend` is `false` the lines will not be blended. this option is visible when a lot of lines overlap.
+
 > when `.colorBlend` is `true`, in light mode the lines will be blended with `.multiply` and in dark mode the lines will be blended with `.lighten`
+
 > `.colorBlend` is `true` by default
 
 ## Mock
