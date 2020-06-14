@@ -4,11 +4,8 @@
 
 SwiftUI View for Trails of Values over Time
 
-![](http://hexagons.net/external/trails/trails_demo_light_crop.gif)
-![](http://hexagons.net/external/trails/trails_demo_dark.gif)
-
-
-<img src="http://hexagons.net/external/trails/trails_property_default.png" width="250" />
+![](http://hexagons.net/external/trails/trails_demo_light_crop_480.gif)
+![](http://hexagons.net/external/trails/trails_demo_dark_480.gif)
 
 ## Setup
 
@@ -27,6 +24,8 @@ struct ContentView: View {
 ~~~~
 
 ## Properties
+
+<img src="http://hexagons.net/external/trails/trails_property_default.png" width="250" />
 
 ~~~~swift 
 trailer.duration = 10.0
