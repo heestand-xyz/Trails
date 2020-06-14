@@ -7,6 +7,28 @@
 
 import SwiftUI
 
+//@available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
+//public struct TestView: View {
+//    public var body: some View {
+//        ZStack {
+//            Color.blue
+//            VStack {
+//                Text("Top")
+//                Spacer()
+//                HStack {
+//                    Text("Left")
+//                    Spacer()
+//                    Text("Test")
+//                    Spacer()
+//                    Text("Right")
+//                }
+//                Spacer()
+//                Text("Bottom")
+//            }
+//        }
+//    }
+//}
+
 @available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 public struct TrailsView: View {
     var labelWidth: CGFloat { trailer.fontSize * 4 }
