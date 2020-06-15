@@ -145,7 +145,7 @@ trailer.colorBlend = false
 trailer.drawValueBackground = false
 ~~~~
 
-> user this if your background is **transparent**
+> useful if your background is **transparent**
 > `.drawValueBackground` is `true` by *default*
 
 ~~~~swift 

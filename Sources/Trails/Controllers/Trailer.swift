@@ -11,6 +11,8 @@ public class Trailer: ObservableObject {
     let count: Int
     
     /// range in seconds
+    ///
+    /// values added longer ago than the duration will be removed
     @Published public var duration: Double
     
     var hasSomeValues: Bool { totalValueCount > 0 }
@@ -80,9 +82,13 @@ public class Trailer: ObservableObject {
     let defaultSmallNonBigValueLines: [Double] = [0.25, 0.5, 0.75]
     let defaultBigValueLines: [Double] = [0.0, 1.0]
     
-    /// *default* is `true` if `count` is more than `1`
+    /// *default* is `true` if `count` is `2` or more
     @Published public var colorsActive: Bool
     /// *default* is "rainbow"
+    ///
+    /// the number of values in the array **must match** the `count` passed to `Trailer`
+    ///
+    /// a hue is a value between `0.0` and `1.0`, low values: *red to green*, middle values: *green to blue*, high values: *blue to red*
     @Published public var hues: [Double]
     /// *default* is `true`
     @Published public var colorBlend: Bool = true
@@ -98,6 +104,8 @@ public class Trailer: ObservableObject {
     @Published public var circleRadius: CGFloat = 3.0
 
     /// *default* is `true`
+    ///
+    /// useful if your background is **transparent**
     @Published public var drawValueBackground: Bool = true
     /// *default* is `true`
     @Published public var drawValueEndLines: Bool = true
