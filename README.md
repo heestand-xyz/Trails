@@ -12,7 +12,7 @@
 ### Swift Package
 
 ~~~~swift
-.package(url: "https://github.com/hexagons/Trails.git", from: "1.0.0")
+.package(url: "https://github.com/hexagons/Trails.git", from: "1.1.0")
 ~~~~
 
 ## Setup
