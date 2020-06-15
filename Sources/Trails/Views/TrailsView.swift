@@ -109,9 +109,15 @@ public struct TrailsView: View {
                 }()))
                 .padding(10)
                 .background(
-                    Color.primary
-                        .colorInvert()
-                        .blur(radius: 15)
+                    Group {
+                        if trailer.drawDefaultTextBackground {
+                            Color.primary
+                                .colorInvert()
+                                .blur(radius: 15)
+                        } else {
+                            Color.clear
+                        }
+                    }
                 )
         }
     }

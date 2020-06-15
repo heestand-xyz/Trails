@@ -102,13 +102,29 @@ public class Trailer: ObservableObject {
     @Published public var circleBorder: Bool = true
     /// *default* is `3.0`
     @Published public var circleRadius: CGFloat = 3.0
-
-    /// *default* is `true`
-    ///
-    /// useful if your background is **transparent**
-    @Published public var drawValueBackground: Bool = true
+    
     /// *default* is `true`
     @Published public var drawValueEndLines: Bool = true
+    /// *default* is `true` on **iOS** and **watchOS**
+    ///
+    /// can be useful to turn to `false` if your background is **transparent**
+    @Published public var drawValueBackground: Bool  = {
+        #if os(iOS) || os(watchOS)
+        return true
+        #else
+        return false
+        #endif
+    }()
+    /// *default* is `true` on **iOS** and **watchOS**
+    ///
+    /// can be useful to turn to `false` if your background is **transparent**
+    @Published public var drawDefaultTextBackground: Bool = {
+        #if os(iOS) || os(watchOS)
+        return true
+        #else
+        return false
+        #endif
+    }()
     
     /// *default* is `8.0`
     @Published public var fontSize: CGFloat = 8.0

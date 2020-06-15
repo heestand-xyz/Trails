@@ -12,7 +12,7 @@
 ### Swift Package
 
 ~~~~swift
-.package(url: "https://github.com/hexagons/Trails.git", from: "1.1.0")
+.package(url: "https://github.com/hexagons/Trails.git", from: "1.1.1")
 ~~~~
 
 ## Setup
@@ -142,17 +142,24 @@ trailer.colorBlend = false
 > `.colorBlend` is `true` by *default*
 
 ~~~~swift 
-trailer.drawValueBackground = false
-~~~~
-
-> useful if your background is **transparent**
-> `.drawValueBackground` is `true` by *default*
-
-~~~~swift 
 trailer.drawValueEndLines = false
 ~~~~
 
 > `.drawValueEndLines` is `true` by *default*
+
+~~~~swift 
+trailer.drawValueBackground = false
+~~~~
+
+> `.drawValueBackground` is `true` by *default* on **iOS** and **watchOS**
+> can be useful to turn to `false` if your background is **transparent**
+
+~~~~swift 
+trailer.drawDefaultTextBackground = false
+~~~~
+
+> `.drawValueBackground` is `true` by *default* on **iOS** and **watchOS**
+> can be useful to turn to `false` if your background is **transparent**
 
 ~~~~swift 
 trailer.fontSize = 12.0
