@@ -80,23 +80,35 @@ public class Trailer: ObservableObject {
     let defaultSmallNonBigValueLines: [Double] = [0.25, 0.5, 0.75]
     let defaultBigValueLines: [Double] = [0.0, 1.0]
     
+    /// *default* is `true` if `count` is more than `1`
     @Published public var colorsActive: Bool
+    /// *default* is "rainbow"
     @Published public var hues: [Double]
+    /// *default* is `true`
     @Published public var colorBlend: Bool = true
 
+    /// *default* is `1.0`
     @Published public var lineWidth: CGFloat = 1.0
     
+    /// *default* is `false`
     @Published public var circlesActive: Bool = false
+    /// *default* is `true`
     @Published public var circleBorder: Bool = true
+    /// *default* is `3.0`
     @Published public var circleRadius: CGFloat = 3.0
 
+    /// *default* is `true`
     @Published public var drawValueBackground: Bool = true
+    /// *default* is `true`
     @Published public var drawValueEndLines: Bool = true
     
+    /// *default* is `8.0`
     @Published public var fontSize: CGFloat = 8.0
 
+    /// *default* is `20.0`
     @Published public var leftSpacing: CGFloat = 20
-    @Published public var rightSpacing: CGFloat = 20
+    /// *default* is `20.0`
+    @Published public var rightSpacing: CGFloat = 20.0
 
     #if os(iOS) || os(tvOS)
     var displayLink: CADisplayLink!
