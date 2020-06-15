@@ -10,14 +10,15 @@ import SwiftUI
 @available(iOS 13.0, tvOS 13.0, watchOS 6, macOS 10.15, *)
 public struct TrailsView: View {
     var labelWidth: CGFloat { trailer.fontSize * 4 }
-    let kSpacing: CGFloat = 20
+    var leftSpacing: CGFloat { trailer.leftSpacing }
+    var rightSpacing: CGFloat { trailer.rightSpacing }
     @ObservedObject var trailer: Trailer
     public init(trailer: Trailer) {
         self.trailer = trailer
     }
     public var body: some View {
         GeometryReader { geo in
-            if geo.size.width > self.labelWidth * 2 + self.kSpacing * 2 {
+            if geo.size.width > self.labelWidth * 2 + self.leftSpacing + self.rightSpacing {
                 if self.trailer.hasSomeValues {
                     self.mainBody(size: geo.size)
                 } else {
@@ -36,9 +37,9 @@ public struct TrailsView: View {
                     Gradient.Stop(color: Color(.displayP3, white: 1.0, opacity: 0.25),
                                   location: self.labelWidth / size.width),
                     Gradient.Stop(color: .white,
-                                  location: (self.labelWidth + self.kSpacing) / size.width),
+                                  location: (self.labelWidth + self.leftSpacing) / size.width),
                     Gradient.Stop(color: .white,
-                                  location: (size.width - self.labelWidth - self.kSpacing) / size.width),
+                                  location: (size.width - self.labelWidth - self.rightSpacing) / size.width),
                     Gradient.Stop(color: Color(.displayP3, white: 1.0, opacity: 0.25),
                                   location: (size.width - self.labelWidth) / size.width),
                 ]),
@@ -57,15 +58,15 @@ public struct TrailsView: View {
                     Gradient.Stop(color: .clear,
                                   location: self.labelWidth / size.width),
                     Gradient.Stop(color: .white,
-                                  location: (self.labelWidth + self.kSpacing) / size.width),
+                                  location: (self.labelWidth + self.leftSpacing) / size.width),
                     Gradient.Stop(color: .white,
-                                  location: (size.width - self.labelWidth - self.kSpacing) / size.width),
+                                  location: (size.width - self.labelWidth - self.rightSpacing) / size.width),
                     Gradient.Stop(color: .clear,
                                   location: (size.width - self.labelWidth) / size.width),
                 ]),
                                      startPoint: .leading,
                                      endPoint: .trailing))
-            HStack(spacing: self.kSpacing) {
+            HStack {
                 LabelsView(trailer: self.trailer,
                            height: size.height)
                     .frame(width: self.labelWidth)
@@ -84,15 +85,15 @@ public struct TrailsView: View {
                     Gradient.Stop(color: Color(.displayP3, white: 1.0, opacity: 0.25),
                                   location: self.labelWidth / size.width),
                     Gradient.Stop(color: .white,
-                                  location: (self.labelWidth + self.kSpacing) / size.width),
+                                  location: (self.labelWidth + self.leftSpacing) / size.width),
                     Gradient.Stop(color: .white,
-                                  location: (size.width - self.labelWidth - self.kSpacing) / size.width),
+                                  location: (size.width - self.labelWidth - self.rightSpacing) / size.width),
                     Gradient.Stop(color: Color(.displayP3, white: 1.0, opacity: 0.25),
                                   location: (size.width - self.labelWidth) / size.width),
                 ]),
                                      startPoint: .leading,
                                      endPoint: .trailing))
-            HStack(spacing: self.kSpacing) {
+            HStack {
                 DefaultLabelsView(trailer: self.trailer,
                                   height: size.height)
                     .frame(width: self.labelWidth)

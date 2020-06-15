@@ -160,6 +160,14 @@ trailer.fontSize = 12.0
 
 > `.fontSize` is `8.0` by *default*
 
+~~~~swift 
+trailer.leftSpacing = 10.0
+trailer.rightSpacing = 10.0
+~~~~
+
+> `.leftSpacing` and `.rightSpacing` is `20.0` by *default*
+
+
 ## Mock
 
 To repilcate the **randomness** seen in the gifs in the top of this readme, use this code:
