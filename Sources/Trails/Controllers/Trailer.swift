@@ -13,6 +13,8 @@ public class Trailer: ObservableObject {
     /// range in seconds
     @Published public var duration: Double
     
+    var hasSomeValues: Bool { totalValueCount > 0 }
+    var totalValueCount: Int { allTimeValues.map(\.count).reduce(0, +) }
     @Published var allTimeValues: [[TimeValue]]
     var lastValuesAndHues: [(value: Double, hue: Double)] {
         zip(lastValues, lastHues).map { zip -> (value: Double, hue: Double) in
@@ -71,6 +73,12 @@ public class Trailer: ObservableObject {
     var bigValueLines: [Double] {
         Trailer.getMagnitudes(in: valueRange, at: magnitude)
     }
+    
+    lazy var defaultFullValueRange: ClosedRange<Double> = {
+        (-paddingFraction)...(1.0 + paddingFraction)
+    }()
+    let defaultSmallNonBigValueLines: [Double] = [0.25, 0.5, 0.75]
+    let defaultBigValueLines: [Double] = [0.0, 1.0]
     
     @Published public var colorsActive: Bool
     @Published public var hues: [Double]
@@ -136,6 +144,10 @@ public class Trailer: ObservableObject {
             let timeValue: TimeValue = TimeValue(value: value)
             allTimeValues[i].append(timeValue)
         }
+    }
+    
+    public func clear() {
+        allTimeValues = .init(repeating: [], count: count)
     }
 
     @objc func frameLoop() {
