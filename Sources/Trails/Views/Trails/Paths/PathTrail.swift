@@ -22,7 +22,9 @@ struct PathTrail {
         for (i, timeValue) in timeValues.enumerated() {
             let timeFraction: Double = timeValue.seconds / duration
             let x: CGFloat = w - w * CGFloat(timeFraction)
-            let valueFraction: Double = (timeValue.value - valueRange.lowerBound) / (valueRange.upperBound - valueRange.lowerBound)
+            let valueSpan: Double = valueRange.upperBound - valueRange.lowerBound
+            guard valueSpan > 0.0 else { continue }
+            let valueFraction: Double = (timeValue.value - valueRange.lowerBound) / valueSpan
             let y: CGFloat = h - h * CGFloat(valueFraction)
             if drawValueEndLines {
                 if i == 0 {

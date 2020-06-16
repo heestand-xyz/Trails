@@ -18,7 +18,9 @@ struct PathLines {
         let w: CGFloat = size.width
         let h: CGFloat = size.height
         for valueLine in valueLines {
-            let valueFraction: Double = (valueLine - valueRange.lowerBound) / (valueRange.upperBound - valueRange.lowerBound)
+            let valueSpan: Double = valueRange.upperBound - valueRange.lowerBound
+            guard valueSpan > 0.0 else { continue }
+            let valueFraction: Double = (valueLine - valueRange.lowerBound) / valueSpan
             let y: CGFloat = h - h * CGFloat(valueFraction)
             path.move(to: CGPoint(x: 0.0, y: y))
             path.addLine(to: CGPoint(x: w, y: y))
