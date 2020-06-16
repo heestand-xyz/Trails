@@ -109,7 +109,7 @@ public class Trailer: ObservableObject {
     ///
     /// can be useful to turn to `false` if your background is **transparent**
     @Published public var drawValueBackground: Bool  = {
-        #if os(iOS) || os(watchOS)
+        #if os(iOS) || os(watchOS)
         return true
         #else
         return false
@@ -119,7 +119,7 @@ public class Trailer: ObservableObject {
     ///
     /// can be useful to turn to `false` if your background is **transparent**
     @Published public var drawDefaultTextBackground: Bool = {
-        #if os(iOS) || os(watchOS)
+        #if os(iOS) || os(watchOS)
         return true
         #else
         return false
