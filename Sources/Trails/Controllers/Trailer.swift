@@ -37,17 +37,28 @@ public class Trailer: ObservableObject {
     private var valueRange: ClosedRange<Double> {
         var min: Double!
         var max: Double!
-        for timeValues in allTimeValues {
-            for timeValue in timeValues {
-                if min == nil || timeValue.value < min! {
-                    min = timeValue.value
-                }
-                if max == nil || timeValue.value > max! {
-                    max = timeValue.value
+        if fixedMin == nil || fixedMax == nil {
+            for timeValues in allTimeValues {
+                for timeValue in timeValues {
+                    if fixedMin == nil && (min == nil || timeValue.value < min!) {
+                        min = timeValue.value
+                    }
+                    if fixedMax == nil && (max == nil || timeValue.value > max!) {
+                        max = timeValue.value
+                    }
                 }
             }
         }
+        if let fixedMin: Double = fixedMin {
+            min = fixedMin
+        }
+        if let fixedMax: Double = fixedMax {
+            max = fixedMax
+        }
         guard min != nil && max != nil else {
+            return 0.0...0.0
+        }
+        guard min <= max else {
             return 0.0...0.0
         }
         return min...max
@@ -63,6 +74,9 @@ public class Trailer: ObservableObject {
     var magnitude: Double {
         Trailer.getMagnitude(in: valueRange)
     }
+    
+    public var fixedMin: Double?
+    public var fixedMax: Double?
     
     var smallNonBigValueLines: [Double] {
         smallValueLines.filter { value -> Bool in
