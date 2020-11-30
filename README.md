@@ -69,7 +69,7 @@ class Main {
 
 ## Properties
 
-<img src="http://heestand.xyz/Apps/Trails/trails/trails_property_default.png" width="240" />
+<img src="http://heestand.xyz/Apps/Trails/trails_property_default.png" width="240" />
 
 ~~~~swift 
 trailer.duration = 10.0
@@ -81,7 +81,7 @@ trailer.duration = 10.0
 
 > values added longer ago than the duration will be removed
 
-<img src="http://heestand.xyz/Apps/Trails/trails/trails_property_circles_active.png" width="240" />
+<img src="http://heestand.xyz/Apps/Trails/trails_property_circles_active.png" width="240" />
 
 ~~~~swift 
 trailer.circlesActive = true
@@ -89,7 +89,7 @@ trailer.circlesActive = true
 
 > `.circlesActive` *default* is `false`
 
-<img src="http://heestand.xyz/Apps/Trails/trails/trails_property_circles_border_and_radius.png" width="240" />
+<img src="http://heestand.xyz/Apps/Trails/trails_property_circles_border_and_radius.png" width="240" />
 
 ~~~~swift 
 trailer.circleBorder = false
@@ -101,7 +101,7 @@ trailer.circleRadius = 2.0
 > `.circleRadius` *default* is `3.0`
 
 
-<img src="http://heestand.xyz/Apps/Trails/trails/trails_property_line_width.png" width="240" />
+<img src="http://heestand.xyz/Apps/Trails/trails_property_line_width.png" width="240" />
 
 ~~~~swift 
 trailer.lineWidth = 3.0
@@ -109,7 +109,7 @@ trailer.lineWidth = 3.0
 
 > `.lineWidth` *default* is `1.0`
 
-<img src="http://heestand.xyz/Apps/Trails/trails/trails_property_color_not_active.png" width="240" />
+<img src="http://heestand.xyz/Apps/Trails/trails_property_color_not_active.png" width="240" />
 
 ~~~~swift 
 trailer.colorsActive = false
@@ -119,7 +119,7 @@ trailer.colorsActive = false
 
 > when count is `2` or more, `.colorsActive` is `true` by *default*
 
-<img src="http://heestand.xyz/Apps/Trails/trails/trails_property_hues.png" width="240" />
+<img src="http://heestand.xyz/Apps/Trails/trails_property_hues.png" width="240" />
 
 ~~~~swift 
 trailer.hues = [0.0, 0.1, 0.2]
