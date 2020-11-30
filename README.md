@@ -1,9 +1,8 @@
-<img src="http://heestand.xyz/Packages/Trails/trails/trails_icon.png" width="90" />
+<img src="http://heestand.xyz/Packages/Trails/trails_icon.png" width="90" />
 
 # Trails
 
 ![](http://heestand.xyz/Packages/Trails/trails_demo_light_crop.gif)
-![](http://heestand.xyz/Packages/Trails/trails_demo_dark.gif)
 
 *works on __iOS__, __tvOS__, __watchOS__ and __macOS__*
 
@@ -118,8 +117,6 @@ trailer.colorsActive = false
 > when count is `1`, `.colorsActive` is `false` by *default*
 
 > when count is `2` or more, `.colorsActive` is `true` by *default*
-
-<img src="http://heestand.xyz/Packages/Trails/trails_property_hues.png" width="240" />
 
 ~~~~swift 
 trailer.hues = [0.0, 0.1, 0.2]
