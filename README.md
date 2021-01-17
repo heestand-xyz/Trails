@@ -1,8 +1,8 @@
-<img src="http://heestand.xyz/Packages/Trails/trails_icon.png" width="90" />
+<img src="http://heestand.xyz/packages/Trails/trails_icon.png" width="90" />
 
 # Trails
 
-![](http://heestand.xyz/Packages/Trails/trails_demo_light_crop.gif)
+![](http://heestand.xyz/packages/Trails/trails_demo_light_crop.gif)
 
 *works on __iOS__, __tvOS__, __watchOS__ and __macOS__*
 
@@ -68,7 +68,7 @@ class Main {
 
 ## Properties
 
-<img src="http://heestand.xyz/Packages/Trails/trails_property_default.png" width="240" />
+<img src="http://heestand.xyz/packages/Trails/trails_property_default.png" width="240" />
 
 ~~~~swift 
 trailer.duration = 10.0
@@ -80,7 +80,7 @@ trailer.duration = 10.0
 
 > values added longer ago than the duration will be removed
 
-<img src="http://heestand.xyz/Packages/Trails/trails_property_circles_active.png" width="240" />
+<img src="http://heestand.xyz/packages/Trails/trails_property_circles_active.png" width="240" />
 
 ~~~~swift 
 trailer.circlesActive = true
@@ -88,7 +88,7 @@ trailer.circlesActive = true
 
 > `.circlesActive` *default* is `false`
 
-<img src="http://heestand.xyz/Packages/Trails/trails_property_circles_border_and_radius.png" width="240" />
+<img src="http://heestand.xyz/packages/Trails/trails_property_circles_border_and_radius.png" width="240" />
 
 ~~~~swift 
 trailer.circleBorder = false
@@ -100,7 +100,7 @@ trailer.circleRadius = 2.0
 > `.circleRadius` *default* is `3.0`
 
 
-<img src="http://heestand.xyz/Packages/Trails/trails_property_line_width.png" width="240" />
+<img src="http://heestand.xyz/packages/Trails/trails_property_line_width.png" width="240" />
 
 ~~~~swift 
 trailer.lineWidth = 3.0
@@ -108,7 +108,7 @@ trailer.lineWidth = 3.0
 
 > `.lineWidth` *default* is `1.0`
 
-<img src="http://heestand.xyz/Packages/Trails/trails_property_color_not_active.png" width="240" />
+<img src="http://heestand.xyz/packages/Trails/trails_property_color_not_active.png" width="240" />
 
 ~~~~swift 
 trailer.colorsActive = false
@@ -180,4 +180,4 @@ To repilcate the **randomness** seen in the gifs in the top of this readme, use 
 let trailer: Trailer = TrailerMock.make()
 ~~~~
 
-provided by [TrailerMock.swift](https://github.com/hexagons/Trails/blob/master/Sources/Trails/Controller/TrailerMock.swift)
+provided by [TrailerMock.swift](https://github.com/heestand-xyz/Trails/blob/master/Sources/Trails/Controller/TrailerMock.swift)
