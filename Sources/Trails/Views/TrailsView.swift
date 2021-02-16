@@ -13,8 +13,10 @@ public struct TrailsView: View {
     var leftSpacing: CGFloat { trailer.leftSpacing }
     var rightSpacing: CGFloat { trailer.rightSpacing }
     @ObservedObject var trailer: Trailer
-    public init(trailer: Trailer) {
+    @Binding var color: Color?
+    public init(trailer: Trailer, color: Binding<Color?> = .constant(nil)) {
         self.trailer = trailer
+        _color = color
     }
     public var body: some View {
         GeometryReader { geo in
@@ -25,7 +27,7 @@ public struct TrailsView: View {
                     self.defaultBody(size: geo.size)
                 }
             } else {
-                self.textBody(text: self.trailer.hasSomeValues ? "Trails..." : "No Trails")
+                self.textBody(text: self.trailer.hasSomeValues ? "Values..." : "No Values")
             }
         }
     }
@@ -48,6 +50,7 @@ public struct TrailsView: View {
             ZStack {
                 ForEach(0..<self.trailer.count) { i in
                     TrailView(trailer: self.trailer,
+                              color: $color,
                               index: i,
                               size: CGSize(width: size.width - self.labelWidth * 2,
                                            height: size.height))
@@ -60,7 +63,7 @@ public struct TrailsView: View {
                     Gradient.Stop(color: .white,
                                   location: (self.labelWidth + self.leftSpacing) / size.width),
                     Gradient.Stop(color: .white,
-                                  location: (size.width - self.labelWidth - self.rightSpacing) / size.width),
+                                  location: (size.width - self.labelWidth) / size.width),
                     Gradient.Stop(color: .clear,
                                   location: (size.width - self.labelWidth) / size.width),
                 ]),
@@ -72,6 +75,7 @@ public struct TrailsView: View {
                     .frame(width: self.labelWidth)
                 Spacer()
                 LiveLabelsView(trailer: self.trailer,
+                               color: $color,
                                height: size.height)
                     .frame(width: self.labelWidth)
             }
@@ -99,7 +103,7 @@ public struct TrailsView: View {
                     .frame(width: self.labelWidth)
                 Spacer()
             }
-            Text("No Trails")
+            Text("No Values")
                 .font(.system(size: self.trailer.fontSize, weight: .regular, design: {
                     #if !os(watchOS)
                     return .monospaced

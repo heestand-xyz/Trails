@@ -144,7 +144,7 @@ public class Trailer: ObservableObject {
     @Published public var fontSize: CGFloat = 8.0
 
     /// *default* is `20.0`
-    @Published public var leftSpacing: CGFloat = 20
+    @Published public var leftSpacing: CGFloat = 20.0
     /// *default* is `20.0`
     @Published public var rightSpacing: CGFloat = 20.0
 

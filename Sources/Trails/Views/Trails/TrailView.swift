@@ -11,6 +11,7 @@ import SwiftUI
 struct TrailView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @ObservedObject var trailer: Trailer
+    @Binding var color: Color?
     let index: Int
     let size: CGSize
     var body: some View {
@@ -35,7 +36,7 @@ struct TrailView: View {
                 }
             }
         }
-            .foregroundColor(getColor(at: index))
+            .foregroundColor(color ?? getColor(at: index))
         .mask(Group {
             if trailer.circlesActive && trailer.circleBorder {
                 ZStack {
@@ -82,6 +83,7 @@ struct TrailView_Previews: PreviewProvider {
             ZStack {
                 Color.primary.colorInvert()
                 TrailView(trailer: TrailerMock.make(),
+                          color: .constant(nil),
                           index: 0,
                           size: CGSize(width: 300, height: 300))
 //                    .colorScheme(.dark)

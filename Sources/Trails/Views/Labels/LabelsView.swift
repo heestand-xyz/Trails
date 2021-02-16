@@ -14,10 +14,12 @@ struct LabelsView: View {
     var body: some View {
         ZStack(alignment: .topLeading) {
             Color.clear
-            ForEach(trailer.smallNonBigValueLines, id: \.self) { value in
-                Text(self.getText(value: value))
-                    .offset(y: self.getOffset(value: value) - (self.trailer.fontSize * (5 / 8)))
-            }
+            if trailer.smallNonBigValueLines.count < 10 {
+                ForEach(trailer.smallNonBigValueLines, id: \.self) { value in
+                    Text(self.getText(value: value))
+                        .lineLimit(1)
+                        .offset(y: self.getOffset(value: value) - (self.trailer.fontSize * (5 / 8)))
+                }
                 .font(.system(size: self.trailer.fontSize, weight: .regular, design: {
                     #if !os(watchOS)
                     return .monospaced
@@ -25,8 +27,10 @@ struct LabelsView: View {
                     return .default
                     #endif
                 }()))
+            }
             ForEach(trailer.bigValueLines, id: \.self) { value in
                 Text(self.getText(value: value))
+                    .lineLimit(1)
                     .offset(y: self.getOffset(value: value) - (self.trailer.fontSize * (5 / 8)))
             }
                 .font(.system(size: self.trailer.fontSize, weight: .bold, design: {
@@ -41,7 +45,7 @@ struct LabelsView: View {
             .clipped()
     }
     func getText(value: Double) -> String {
-        "\(value)"
+        String(format: "%.3f", value)
     }
     func getOffset(value: Double) -> CGFloat {
         let lower: Double = trailer.fullValueRange.lowerBound

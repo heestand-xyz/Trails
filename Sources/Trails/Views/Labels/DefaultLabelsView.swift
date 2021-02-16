@@ -16,6 +16,7 @@ struct DefaultLabelsView: View {
             Color.clear
             ForEach(trailer.defaultSmallNonBigValueLines, id: \.self) { value in
                 Text(self.getText(value: value))
+                    .lineLimit(1)
                     .offset(y: self.getOffset(value: value) - (self.trailer.fontSize * (5 / 8)))
             }
                 .font(.system(size: self.trailer.fontSize, weight: .regular, design: {
@@ -27,6 +28,7 @@ struct DefaultLabelsView: View {
                 }()))
             ForEach(trailer.defaultBigValueLines, id: \.self) { value in
                 Text(self.getText(value: value))
+                    .lineLimit(1)
                     .offset(y: self.getOffset(value: value) - (self.trailer.fontSize * (5 / 8)))
             }
                 .font(.system(size: self.trailer.fontSize, weight: .bold, design: {
@@ -41,7 +43,7 @@ struct DefaultLabelsView: View {
             .clipped()
     }
     func getText(value: Double) -> String {
-        "\(value)"
+        String(format: "%.3f", value)
     }
     func getOffset(value: Double) -> CGFloat {
         let lower: Double = trailer.defaultFullValueRange.lowerBound

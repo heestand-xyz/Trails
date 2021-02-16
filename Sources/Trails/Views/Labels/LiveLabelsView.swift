@@ -11,6 +11,7 @@ import SwiftUI
 struct LiveLabelsView: View {
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @ObservedObject var trailer: Trailer
+    @Binding var color: Color?
     let height: CGFloat
     var body: some View {
         ZStack(alignment: .topTrailing) {
@@ -23,7 +24,8 @@ struct LiveLabelsView: View {
                             .opacity(0.75)
                     }
                     Text(self.getText(value: valueAndHue.value))
-                        .foregroundColor(self.getColor(hue: valueAndHue.hue))
+                        .lineLimit(1)
+                        .foregroundColor(color ?? self.getColor(hue: valueAndHue.hue))
                         .layoutPriority(1)
                 }
                     .offset(y: self.getOffset(value: valueAndHue.value) - (self.trailer.fontSize * (5 / 8)))
@@ -49,7 +51,7 @@ struct LiveLabelsView: View {
             .rounding(accordingToBehavior: numHandler)
         
         
-        return "\(Float(truncating: roundedNum))"
+        return String(format: "%.3f", Float(truncating: roundedNum))
     }
     func getOffset(value: Double) -> CGFloat {
         let lower: Double = trailer.fullValueRange.lowerBound
@@ -78,7 +80,8 @@ struct LiveLabelsView_Previews: PreviewProvider {
             ZStack {
                 Color.primary.colorInvert()
                 LiveLabelsView(trailer: TrailerMock.make(),
-                           height: 200)
+                               color: .constant(nil),
+                               height: 200)
 //                    .colorScheme(.dark)
 //                    .background(Color.black)
             }
