@@ -62,7 +62,6 @@ class Main {
         RunLoop.current.add(timer, forMode: .common)
         
     }
-    
 }
 ~~~~
 

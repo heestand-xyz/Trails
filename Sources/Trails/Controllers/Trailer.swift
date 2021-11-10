@@ -296,5 +296,4 @@ public class Trailer: ObservableObject {
         return magnitudes
 
     }
-    
 }
