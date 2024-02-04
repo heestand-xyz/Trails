@@ -1,5 +1,5 @@
 import Foundation
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(visionOS) || os(tvOS)
 import QuartzCore.CoreAnimation
 #endif
 import SwiftUI
@@ -123,7 +123,7 @@ public class Trailer: ObservableObject {
     ///
     /// can be useful to turn to `false` if your background is **transparent**
     @Published public var drawValueBackground: Bool  = {
-        #if os(iOS) || os(watchOS)
+        #if os(iOS) || os(visionOS) || os(watchOS)
         return true
         #else
         return false
@@ -132,13 +132,7 @@ public class Trailer: ObservableObject {
     /// *default* is `true` on **iOS** and **watchOS**
     ///
     /// can be useful to turn to `false` if your background is **transparent**
-    @Published public var drawDefaultTextBackground: Bool = {
-        #if os(iOS) || os(watchOS)
-        return true
-        #else
-        return false
-        #endif
-    }()
+    @Published public var drawDefaultTextBackground: Bool = false
     
     /// *default* is `8.0`
     @Published public var fontSize: CGFloat = 8.0
@@ -148,7 +142,7 @@ public class Trailer: ObservableObject {
     /// *default* is `20.0`
     @Published public var rightSpacing: CGFloat = 20.0
 
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(visionOS) || os(tvOS)
     var displayLink: CADisplayLink!
     #else
     var timerLink: Timer!
@@ -166,7 +160,7 @@ public class Trailer: ObservableObject {
             Double(i) / Double(count)
         })
         
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(visionOS) || os(tvOS)
         displayLink = CADisplayLink(target: self, selector: #selector(frameLoop))
         displayLink.add(to: .current, forMode: .common)
         #else
