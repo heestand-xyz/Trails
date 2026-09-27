@@ -14,5 +14,6 @@ let package = Package(
     ],
     targets: [
         .target(name: "Trails"),
+        .testTarget(name: "TrailsTests", dependencies: ["Trails"]),
     ]
 )

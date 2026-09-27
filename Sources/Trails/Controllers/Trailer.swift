@@ -144,6 +144,13 @@ public class Trailer: ObservableObject {
 
     #if os(iOS) || os(visionOS) || os(tvOS)
     var displayLink: CADisplayLink!
+    private class FrameTarget: NSObject {
+        weak var trailer: Trailer?
+
+        init(trailer: Trailer) { self.trailer = trailer }
+
+        @objc func frameLoop() { trailer?.frameLoop() }
+    }
     #else
     var timerLink: Timer!
     #endif
@@ -161,14 +168,25 @@ public class Trailer: ObservableObject {
         })
         
         #if os(iOS) || os(visionOS) || os(tvOS)
-        displayLink = CADisplayLink(target: self, selector: #selector(frameLoop))
+        let target = FrameTarget(trailer: self)
+        displayLink = CADisplayLink(target: target, selector: #selector(FrameTarget.frameLoop))
         displayLink.add(to: .current, forMode: .common)
         #else
-        timerLink = Timer(timeInterval: 1.0 / 60.0, target: self, selector: #selector(frameLoop), userInfo: nil, repeats: true)
+        timerLink = Timer(timeInterval: 1.0 / 60.0, repeats: true) { [weak self] _ in
+            self?.frameLoop()
+        }
         RunLoop.current.add(timerLink, forMode: .common)
         #endif
      
         
+    }
+
+    deinit {
+        #if os(iOS) || os(visionOS) || os(tvOS)
+        displayLink?.invalidate()
+        #else
+        timerLink?.invalidate()
+        #endif
     }
     
     public func addFirst(_ value: Double) {
